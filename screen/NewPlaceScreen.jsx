@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Button,
   ScrollView,
@@ -14,7 +14,7 @@ import { LocationPicker } from '../components/LocationPicker';
 import Colors from '../constants/Colors';
 import { addPlace } from '../store/places-actions';
 
-export const NewPlaceScreen = ({ navigation }) => {
+export const NewPlaceScreen = ({ navigation, route }) => {
   const [titleValue, setTitleValue] = useState('');
   const [selectedImage, setSelectedImage] = useState(null);
   const dispatch = useDispatch();
@@ -24,7 +24,12 @@ export const NewPlaceScreen = ({ navigation }) => {
   };
 
   const savePlaceHandler = () => {
-    dispatch(addPlace(titleValue, selectedImage));
+    dispatch(
+      addPlace(titleValue, selectedImage, {
+        latitude: 50.02,
+        longitude: 36.22,
+      })
+    );
     navigation.goBack();
   };
 

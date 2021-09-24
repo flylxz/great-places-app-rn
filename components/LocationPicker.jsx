@@ -55,12 +55,13 @@ export const LocationPicker = ({ navigation }) => {
         location={location}
         onPress={pickOnMapHandler}
       >
-        {isFetching && !location ? (
+        {/* {isFetching && !location ? (
           <ActivityIndicator size="large" color={Colors.primary} />
         ) : (
           <Text>No location chosen yet!</Text>
         )}
-        {errorMsg && <Text>{errorMsg}</Text>}
+        {errorMsg && <Text>{errorMsg}</Text>} */}
+        <Text>Location: {location && location.lat}</Text>
       </MapPreview>
 
       <View style={styles.actions}>

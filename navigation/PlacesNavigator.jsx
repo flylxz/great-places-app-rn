@@ -1,7 +1,12 @@
 import React from 'react';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import {
+  NavigationContainer,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Platform } from 'react-native';
+import { Platform, Text } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 import Colors from '../constants/Colors';
 import { PlacesListScreen } from '../screen/PlacesListScreen';
@@ -9,12 +14,11 @@ import { NewPlaceScreen } from '../screen/NewPlaceScreen';
 import { MapScreen } from '../screen/MapScreen';
 import { PlaceDetailScreen } from '../screen/PlaceDetailScreen';
 import { HeaderButton } from '../components/HeaderButton';
-import { Ionicons } from '@expo/vector-icons';
 
 const Stack = createNativeStackNavigator();
 
 const PlacesNavigator = () => {
-  const { navigate } = useNavigation();
+  const navigation = useNavigation();
 
   return (
     <Stack.Navigator
@@ -32,7 +36,7 @@ const PlacesNavigator = () => {
         options={{
           title: 'All Places',
           headerRight: () => (
-            <HeaderButton onPress={() => navigate('NewPlace')}>
+            <HeaderButton onPress={() => navigation.navigate('NewPlace')}>
               <Ionicons
                 name={Platform.OS === 'android' ? 'md-add' : 'ios-add'}
                 color={Platform.OS === 'android' ? 'white' : Colors.primary}
